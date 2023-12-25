@@ -3,7 +3,7 @@ import { open } from 'sqlite';
 import type { Todo } from '$lib/types/todo';
 
 const db = await open({
-	filename: '/Users/ahmadferdian/Developer/Playgrounds/SVELTE/test-1/tmp/database.db',
+	filename: '/Users/ahmadferdian/Developer/Playgrounds/SVELTE/todo-list/tmp/database.db',
 	driver: sqlite3.Database
 });
 
