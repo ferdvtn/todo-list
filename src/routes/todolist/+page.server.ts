@@ -26,7 +26,8 @@ export const actions = {
 			id: 0,
 			is_done: false,
 			description: description.toString(),
-			updated_at: new Date()
+			updated_at: new Date(),
+			is_active: true
 		});
 
 		return { success: true, message: 'The description succesfully added' };
@@ -53,6 +54,26 @@ export const actions = {
 			return { success: true, message: 'Congratulations ⭐️ ✨' };
 		}
 
-		return null;
+		return { success: true, message: null };
+	},
+	remove: async (e) => {
+		const data = await e.request.formData();
+
+		const id = data.get('id');
+		if (!id) {
+			return fail(400, { error: true, message: 'The id field is required' });
+		}
+
+		const todo = await db.getTodoByID(parseInt(id.toString()));
+		if (!todo) {
+			return fail(404, { error: true, message: 'The id field is not found' });
+		}
+
+		todo.is_active = false;
+		todo.updated_at = new Date();
+
+		await db.updateTodo(todo);
+
+		return { success: true, message: 'The description succesfully deleted' };
 	}
 } satisfies Actions;

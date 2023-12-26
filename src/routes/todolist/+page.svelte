@@ -22,7 +22,7 @@
 	<TodoCard title="Finished" todos={finished} />
 </div>
 
-{#if form?.success}
+{#if form?.success && form.message}
 	<p
 		in:fly={{ x: 100, duration: 200 }}
 		out:fade={{ duration: 200 }}
@@ -32,7 +32,7 @@
 	</p>
 {/if}
 
-{#if form?.error}
+{#if form?.error && form.message}
 	<p
 		in:fly={{ x: 100, duration: 200 }}
 		out:fade={{ duration: 200 }}

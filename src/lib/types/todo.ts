@@ -1,6 +1,7 @@
 export type Todo = {
 	id: Number;
-	is_done: Boolean;
 	description: String;
+	is_done: Boolean;
+	is_active: Boolean;
 	updated_at: Date;
 };
